@@ -9,7 +9,7 @@ module.exports = function (RED) {
     this.fieldType = config.fieldType || 'msg'
 
     node.on('close', (done) => {
-      node.warn('ON CLOSE')
+      // node.warn('ON CLOSE')
       node.done()
     })
 
@@ -44,7 +44,7 @@ module.exports = function (RED) {
     })
 
     node.on('send', (msg) => {
-      node.warn('ON SEND')
+      // node.warn('ON SEND')
       msg.payload = text
       node.send(msg)
     })
