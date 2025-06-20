@@ -47,6 +47,9 @@ typings/
 # TypeScript cache
 *.tsbuildinfo
 
+# Package lock
+package-lock.json
+
 # Optional npm cache directory
 .npm
 
