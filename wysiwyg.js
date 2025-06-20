@@ -52,5 +52,18 @@ module.exports = function (RED) {
 
   RED.nodes.registerType('wysiwyg', Wysiwyg, {
     settings: {},
+    defaults: {
+      name: { value: '' },
+      text: { value: '' },
+      field: { value: 'payload' },
+      fieldType: { value: 'msg' }
+    },
+    label: function() {
+      return this.name || 'wysiwyg';
+    },
+    oneditprepare: function() {
+      // This ensures the name field is properly initialized
+      $('#node-input-name').val(this.name || '');
+    }
   })
 }
