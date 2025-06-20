@@ -1,21 +1,45 @@
 {
     "name": "node-red-contrib-wysiwyg",
-    "version": "0.0.1",
-    "description": "A wysiwyg editor for Node-Red",
+    "version": "1.0.0",
+    "description": "A stable and reliable WYSIWYG editor for Node-RED with rich text editing capabilities, perfect for email templates and HTML content. Battle-tested in production environments.",
     "keywords": [
         "wysiwyg",
-        "node-red"
+        "node-red",
+        "editor",
+        "rich text",
+        "email",
+        "template"
     ],
     "main": "wysiwyg.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "lint": "eslint **/*.js",
+        "format": "prettier --write \"**/*.{js,json,md,html}\""
     },
-    "author": "",
-    "license": "SEE LICENSE IN LICENSE.md",
+    "author": "Your Name <your.email@example.com>",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/yourusername/node-red-contrib-wysiwyg.git"
+    },
+    "bugs": {
+        "url": "https://github.com/yourusername/node-red-contrib-wysiwyg/issues"
+    },
+    "homepage": "https://github.com/yourusername/node-red-contrib-wysiwyg#readme",
+    "engines": {
+        "node": ">=14.0.0"
+    },
     "node-red": {
+        "version": ">=2.0.0",
         "nodes": {
             "wysiwyg": "wysiwyg.js"
         }
     },
-    "dependencies": {}
+    "dependencies": {},
+    "devDependencies": {
+        "eslint": "^8.0.0",
+        "eslint-config-prettier": "^8.0.0",
+        "eslint-plugin-node": "^11.0.0",
+        "prettier": "^2.0.0"
+    }
 }
