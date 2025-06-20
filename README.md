@@ -8,6 +8,8 @@ A WYSIWYG (What You See Is What You Get) editor node for Node-RED.
 
 This node allows you to create and edit rich text content directly within your Node-RED flows.
 
+![WYSIWYG Editor Node](screenshots/2025-06-20.png)
+
 ## Features
 
 - Rich text editing capabilities
