@@ -1,3 +1,5 @@
+const handlerbars = require('handlebars')
+
 /**
  * Node-RED WYSIWYG Editor Node
  * This module provides a WYSIWYG (What You See Is What You Get) editor node for Node-RED.
@@ -23,6 +25,8 @@ module.exports = function (RED) {
     this.field = config.field || 'payload'  // Field to store the text in (default: 'payload')
     this.fieldType = config.fieldType || 'msg'  // Where to store the text: 'msg', 'flow', or 'global'
 
+    this.template = handlerbars.compile(this.text)
+
     /**
      * Handle node cleanup when the node is closed
      */
@@ -43,10 +47,12 @@ module.exports = function (RED) {
       // node.warn('Field: ' + node.field)
       // node.warn('Text: ' + node.text)
 
+      const compiledText = node.template(msg || {})
+
       // Handle different storage types for the WYSIWYG content
       if (node.fieldType === 'msg') {
         // Store the text in the message object
-        RED.util.setMessageProperty(msg, node.field, node.text)
+        RED.util.setMessageProperty(msg, node.field, compiledText)
         send(msg)
         done()
       } else if (node.fieldType === 'flow' || node.fieldType === 'global') {
@@ -55,7 +61,7 @@ module.exports = function (RED) {
         var target = node.context()[node.fieldType]
         
         // Asynchronously set the context value
-        target.set(context.key, node.text, context.store, function (err) {
+        target.set(context.key, compiledText, context.store, function (err) {
           if (err) {
             done(err)
           } else {
@@ -66,7 +72,7 @@ module.exports = function (RED) {
       } else {
         // Fallback: store in msg.payload if fieldType is invalid
         // This should never happen with proper configuration
-        msg.payload = node.text
+        msg.payload = compiledText
         send(msg)
         done()
       }
@@ -79,7 +85,7 @@ module.exports = function (RED) {
     node.on('send', (msg) => {
       // Note: There's a potential bug here - 'text' should be 'node.text'
       // Keeping as is to maintain backward compatibility
-      msg.payload = text  // This should be 'node.text' instead of 'text'
+      msg.payload = compiledText  // This should be 'node.text' instead of 'text'
       node.send(msg)
     })
   }

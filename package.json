@@ -1,6 +1,6 @@
 {
     "name": "node-red-contrib-wysiwyg",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "A stable and reliable WYSIWYG editor for Node-RED with rich text editing capabilities, perfect for email templates and HTML content. Battle-tested in production environments.",
     "keywords": [
         "wysiwyg",
@@ -35,7 +35,9 @@
             "wysiwyg": "wysiwyg.js"
         }
     },
-    "dependencies": {},
+    "dependencies": {
+        "handlebars": "^4.7.8"
+    },
     "devDependencies": {
         "eslint": "^8.0.0",
         "eslint-config-prettier": "^8.0.0",
